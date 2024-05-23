@@ -1,6 +1,6 @@
 {
   "name": "4i_atm",
-  "version": "3.2.2",
+  "version": "3.3.2",
   "description": "it performs the functions of ATM",
   "main": "index.js",
   "type": "module",

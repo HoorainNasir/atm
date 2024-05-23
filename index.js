@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 import inquirer from "inquirer";
-let myBalance = 15000; //dollar
-let myPin = 2125;
+let myBalance = 25000; //dollar
+const myPin = 2125;
 let pinAnswer = await inquirer.prompt([
     {
         name: "pin",
@@ -27,11 +27,12 @@ if (pinAnswer.pin === myPin) {
                 type: " number",
             },
         ]);
-        if (myBalance < amountAns.amount) {
-            console.log("Insufficient balance.");
+        if (myBalance >= amountAns.amount) {
+            myBalance -= amountAns.amount;
+            console.log(`Your remaining balance is: ${myBalance}`);
         }
-        else if (myBalance -= amountAns.amount)
-            console.log("Your remaining balance is: " + myBalance);
+        else
+            console.log("Insufficient balance.");
     }
     if (operationAns.operation === "fast cash") {
         let cashAns = await inquirer.prompt([
@@ -42,11 +43,12 @@ if (pinAnswer.pin === myPin) {
                 choices: ["2000", "5000", "10000", "20000"]
             },
         ]);
-        if (myBalance < cashAns.cash) {
-            console.log("Insufficient balance.");
+        if (myBalance >= cashAns.cash) {
+            myBalance -= cashAns.cash;
+            console.log(`Your remaining balance is: ${myBalance}`);
         }
-        else if (myBalance -= cashAns.cash)
-            console.log("Your remaining balance is: " + myBalance);
+        else
+            console.log("Insufficient Balance.");
     }
     else if (operationAns.operation === "check balance") {
         console.log("Your balance is:" + myBalance);
